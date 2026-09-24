@@ -355,9 +355,22 @@ export default function Home() {
   const [selectedProject, setSelectedProject] =
     useState<number | null>(null);
 
+  const [portraitRotation, setPortraitRotation] = useState({
+    x: 0,
+    y: 0,
+  });
+
   const reduceMotion = useReducedMotion();
 
   const projectRefs = useRef<(HTMLElement | null)[]>([]);
+
+  const portraitDrag = useRef({
+    active: false,
+    startX: 0,
+    startY: 0,
+    originX: 0,
+    originY: 0,
+  });
 
   const inspectProject = (index: number) => {
     setSelectedProject(index);
@@ -388,6 +401,63 @@ export default function Home() {
         });
       }, 120);
     }
+  };
+
+  const handlePortraitPointerDown = (
+    event: React.PointerEvent<HTMLDivElement>
+  ) => {
+    event.currentTarget.setPointerCapture(event.pointerId);
+
+    portraitDrag.current = {
+      active: true,
+      startX: event.clientX,
+      startY: event.clientY,
+      originX: portraitRotation.y,
+      originY: portraitRotation.x,
+    };
+  };
+
+  const handlePortraitPointerMove = (
+    event: React.PointerEvent<HTMLDivElement>
+  ) => {
+    if (!portraitDrag.current.active) return;
+
+    const dx = event.clientX - portraitDrag.current.startX;
+    const dy = event.clientY - portraitDrag.current.startY;
+
+    setPortraitRotation({
+      y: Math.max(
+        -70,
+        Math.min(
+          70,
+          portraitDrag.current.originX + dx * 0.45
+        )
+      ),
+      x: Math.max(
+        -35,
+        Math.min(
+          35,
+          portraitDrag.current.originY - dy * 0.35
+        )
+      ),
+    });
+  };
+
+  const handlePortraitPointerUp = (
+    event: React.PointerEvent<HTMLDivElement>
+  ) => {
+    portraitDrag.current.active = false;
+
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+  };
+
+  const resetPortrait = () => {
+    setPortraitRotation({
+      x: 0,
+      y: 0,
+    });
   };
 
   return (
@@ -629,6 +699,7 @@ export default function Home() {
             </div>
           </div>
 
+          {/* INTERACTIVE PORTRAIT */}
           <motion.div
             initial={{
               opacity: 0,
@@ -644,7 +715,17 @@ export default function Home() {
             }}
             className="relative mx-auto w-full max-w-md lg:ml-auto"
           >
-            <div className="relative aspect-[4/5] overflow-hidden border border-white/[0.08] bg-white/[0.015]">
+            <div
+              onPointerDown={handlePortraitPointerDown}
+              onPointerMove={handlePortraitPointerMove}
+              onPointerUp={handlePortraitPointerUp}
+              onPointerCancel={handlePortraitPointerUp}
+              onDoubleClick={resetPortrait}
+              className="relative aspect-[4/5] cursor-grab touch-none overflow-hidden border border-white/[0.08] bg-white/[0.015] active:cursor-grabbing"
+              style={{
+                perspective: "1200px",
+              }}
+            >
               <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:45px_45px]" />
 
               <motion.div
@@ -671,21 +752,26 @@ export default function Home() {
                 2026
               </div>
 
-              {/* PORTRAIT */}
-              <div className="absolute inset-0">
+              <div
+                className="absolute inset-0 transition-transform duration-75 ease-out"
+                style={{
+                  transform: `rotateX(${portraitRotation.x}deg) rotateY(${portraitRotation.y}deg)`,
+                  transformStyle: "preserve-3d",
+                }}
+              >
                 <img
                   src="/portrait.png"
                   alt="Syed Ashar Raza — AI Engineer"
-                  className="h-full w-full object-contain object-center"
+                  draggable={false}
+                  className="h-full w-full select-none object-contain object-center"
                 />
 
                 <div className="absolute inset-0 bg-black/20" />
               </div>
 
-              {/* PORTRAIT OVERLAY */}
               <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.12),transparent_25%,transparent_65%,rgba(0,0,0,0.72))]" />
 
-              <div className="absolute bottom-6 left-6 right-6 z-20 grid grid-cols-2 gap-5 border-t border-white/[0.15] pt-5">
+              <div className="pointer-events-none absolute bottom-6 left-6 right-6 z-20 grid grid-cols-2 gap-5 border-t border-white/[0.15] pt-5">
                 <div>
                   <div className="text-[8px] tracking-[0.2em] text-white/45">
                     DISCIPLINE
@@ -707,6 +793,10 @@ export default function Home() {
                   </div>
                 </div>
               </div>
+
+              <div className="pointer-events-none absolute bottom-2 left-1/2 z-30 -translate-x-1/2 whitespace-nowrap text-[7px] tracking-[0.18em] text-white/20">
+                DRAG TO ROTATE · DOUBLE CLICK TO RESET
+              </div>
             </div>
 
             <div className="absolute -left-5 top-1/4 border border-white/[0.08] bg-[#050505] px-3 py-2 text-[8px] tracking-[0.2em] text-white/30">
@@ -724,10 +814,7 @@ export default function Home() {
       <section className="border-b border-white/[0.06] px-5 py-28 sm:px-8 lg:px-12 lg:py-40">
         <div className="mx-auto max-w-[1500px]">
           <Reveal>
-            <SectionLabel
-              number="01"
-              children="ENGINEERING"
-            />
+            <SectionLabel number="01" children="ENGINEERING" />
           </Reveal>
 
           <Reveal delay={0.08}>
@@ -769,9 +856,7 @@ export default function Home() {
                       <span>{item}</span>
 
                       {index < 4 && (
-                        <span className="text-white/20">
-                          →
-                        </span>
+                        <span className="text-white/20">→</span>
                       )}
                     </span>
                   ))}
@@ -915,11 +1000,8 @@ export default function Home() {
 
             <div className="grid gap-px bg-white/[0.08] lg:grid-cols-2">
               {projects.map((project, index) => {
-                const isSelected =
-                  selectedProject === index;
-
-                const hasSelection =
-                  selectedProject !== null;
+                const isSelected = selectedProject === index;
+                const hasSelection = selectedProject !== null;
 
                 return (
                   <motion.article
@@ -930,22 +1012,16 @@ export default function Home() {
                     layout
                     animate={{
                       opacity:
-                        hasSelection && !isSelected
-                          ? 0.45
-                          : 1,
+                        hasSelection && !isSelected ? 0.45 : 1,
                       scale:
-                        isSelected && !reduceMotion
-                          ? 1.008
-                          : 1,
+                        isSelected && !reduceMotion ? 1.008 : 1,
                     }}
                     transition={{
                       duration: 0.45,
                       ease: [0.22, 1, 0.36, 1],
                     }}
                     className={`group relative overflow-hidden bg-[#050505] ${
-                      isSelected
-                        ? "z-10"
-                        : "z-0"
+                      isSelected ? "z-10" : "z-0"
                     }`}
                   >
                     <motion.div
@@ -963,9 +1039,7 @@ export default function Home() {
 
                     <button
                       type="button"
-                      onClick={() =>
-                        inspectProject(index)
-                      }
+                      onClick={() => inspectProject(index)}
                       aria-expanded={isSelected}
                       className="block w-full cursor-pointer p-6 text-left outline-none focus-visible:ring-1 focus-visible:ring-white/50 sm:p-8 lg:p-10"
                     >
@@ -1003,9 +1077,7 @@ export default function Home() {
                             reduceMotion
                               ? undefined
                               : {
-                                  rotate: isSelected
-                                    ? 45
-                                    : 0,
+                                  rotate: isSelected ? 45 : 0,
                                 }
                           }
                           transition={{
@@ -1059,9 +1131,7 @@ export default function Home() {
                             reduceMotion
                               ? undefined
                               : {
-                                  x: isSelected
-                                    ? 3
-                                    : 0,
+                                  x: isSelected ? 3 : 0,
                                 }
                           }
                           className="transition-transform duration-300 group-hover:translate-x-1"
@@ -1111,7 +1181,6 @@ export default function Home() {
                               </span>
                             </div>
 
-                            {/* ARCHITECTURE */}
                             <div className="relative mt-8 overflow-x-auto pb-4">
                               <div className="absolute left-0 right-0 top-[17px] h-px bg-white/[0.04]" />
 
@@ -1144,8 +1213,7 @@ export default function Home() {
                                           transition={{
                                             delay: reduceMotion
                                               ? 0
-                                              : stepIndex *
-                                                0.07,
+                                              : stepIndex * 0.07,
                                             duration: 0.35,
                                           }}
                                           className="relative z-10 border border-white/[0.1] bg-[#050505] px-3 py-2 text-[8px] tracking-[0.12em] text-white/55 transition-colors hover:border-white/25 hover:text-white/75"
@@ -1169,12 +1237,10 @@ export default function Home() {
                                               x: 0,
                                             }}
                                             transition={{
-                                              delay:
-                                                reduceMotion
-                                                  ? 0
-                                                  : stepIndex *
-                                                      0.07 +
-                                                    0.05,
+                                              delay: reduceMotion
+                                                ? 0
+                                                : stepIndex * 0.07 +
+                                                  0.05,
                                             }}
                                             className="text-white/25"
                                           >
@@ -1187,7 +1253,6 @@ export default function Home() {
                               </div>
                             </div>
 
-                            {/* STACK */}
                             <div className="mt-8 border-t border-white/[0.06] pt-6">
                               <div className="text-[8px] tracking-[0.2em] text-white/20">
                                 SYSTEM STACK
@@ -1195,10 +1260,7 @@ export default function Home() {
 
                               <div className="mt-4 flex flex-wrap gap-2">
                                 {project.stack.map(
-                                  (
-                                    item,
-                                    stackIndex
-                                  ) => (
+                                  (item, stackIndex) => (
                                     <motion.span
                                       key={item}
                                       initial={
@@ -1216,8 +1278,7 @@ export default function Home() {
                                       transition={{
                                         delay: reduceMotion
                                           ? 0
-                                          : stackIndex *
-                                            0.04,
+                                          : stackIndex * 0.04,
                                         duration: 0.3,
                                       }}
                                       className="border border-white/[0.07] px-2.5 py-1.5 text-[9px] text-white/40 transition-colors hover:border-white/20 hover:text-white/65"
@@ -1229,7 +1290,6 @@ export default function Home() {
                               </div>
                             </div>
 
-                            {/* CONTROLS */}
                             <div className="mt-8 flex flex-wrap items-center gap-3">
                               <a
                                 href={project.github}
@@ -1260,9 +1320,7 @@ export default function Home() {
                               <button
                                 type="button"
                                 onClick={() =>
-                                  setSelectedProject(
-                                    null
-                                  )
+                                  setSelectedProject(null)
                                 }
                                 className="px-4 py-2.5 text-[9px] tracking-[0.16em] text-white/25 transition-colors hover:text-white"
                               >
@@ -1320,10 +1378,7 @@ export default function Home() {
               "EVALUATION / SECURITY / RELIABILITY",
               "PRODUCTION AI",
             ].map((item, index, items) => (
-              <Reveal
-                key={item}
-                delay={index * 0.025}
-              >
+              <Reveal key={item} delay={index * 0.025}>
                 <div className="group flex items-center border-b border-white/[0.06] py-5 transition-colors duration-300 hover:bg-white/[0.02] sm:py-6">
                   <span className="w-12 text-[9px] tracking-[0.15em] text-white/20">
                     {String(index + 1).padStart(2, "0")}
@@ -1415,11 +1470,7 @@ export default function Home() {
                               ? undefined
                               : {
                                   x: [0, 4, 0],
-                                  opacity: [
-                                    0.2,
-                                    0.6,
-                                    0.2,
-                                  ],
+                                  opacity: [0.2, 0.6, 0.2],
                                 }
                           }
                           transition={{
@@ -1470,10 +1521,7 @@ export default function Home() {
           <div className="mt-20 grid border-t border-white/[0.08] sm:grid-cols-2 lg:grid-cols-3">
             {evidence.map(
               ([number, title, description], index) => (
-                <Reveal
-                  key={title}
-                  delay={index * 0.05}
-                >
+                <Reveal key={title} delay={index * 0.05}>
                   <div className="group border-b border-white/[0.08] p-6 transition-colors duration-500 hover:bg-white/[0.02] sm:p-8 lg:p-10">
                     <div className="text-[9px] tracking-[0.18em] text-white/20">
                       {number}
@@ -1513,10 +1561,7 @@ export default function Home() {
           <div className="mt-20 border-t border-white/[0.08]">
             {principles.map(
               ([number, title, description], index) => (
-                <Reveal
-                  key={title}
-                  delay={index * 0.04}
-                >
+                <Reveal key={title} delay={index * 0.04}>
                   <div className="grid gap-5 border-b border-white/[0.07] py-8 transition-colors duration-300 hover:bg-white/[0.015] lg:grid-cols-[80px_0.7fr_1.3fr] lg:items-center">
                     <span className="text-[9px] tracking-[0.18em] text-white/20">
                       {number}
@@ -1559,26 +1604,21 @@ export default function Home() {
           <div className="mt-20 grid border-t border-white/[0.08] md:grid-cols-2">
             {stackGroups.map(
               ([group, items], index) => (
-                <Reveal
-                  key={group}
-                  delay={index * 0.04}
-                >
+                <Reveal key={group} delay={index * 0.04}>
                   <div className="border-b border-white/[0.07] p-6 sm:p-8">
                     <div className="text-[9px] tracking-[0.2em] text-white/25">
                       {group}
                     </div>
 
                     <div className="mt-5 flex flex-wrap gap-2">
-                      {items.map(
-                        (item) => (
-                          <span
-                            key={item}
-                            className="border border-white/[0.07] px-3 py-2 text-[9px] text-white/45 transition-colors duration-300 hover:border-white/20 hover:text-white/70"
-                          >
-                            {item}
-                          </span>
-                        )
-                      )}
+                      {items.map((item) => (
+                        <span
+                          key={item}
+                          className="border border-white/[0.07] px-3 py-2 text-[9px] text-white/45 transition-colors duration-300 hover:border-white/20 hover:text-white/70"
+                        >
+                          {item}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </Reveal>
@@ -1613,10 +1653,7 @@ export default function Home() {
                 ],
                 index
               ) => (
-                <Reveal
-                  key={company}
-                  delay={index * 0.06}
-                >
+                <Reveal key={company} delay={index * 0.06}>
                   <div className="grid gap-8 border-b border-white/[0.07] py-10 lg:grid-cols-[70px_0.8fr_1.3fr_120px] lg:items-center">
                     <span className="text-[9px] tracking-[0.18em] text-white/20">
                       {number}
@@ -1807,10 +1844,7 @@ export default function Home() {
 
           <div className="mt-20 grid border-t border-white/[0.08] md:grid-cols-2">
             {projects.map((project, index) => (
-              <Reveal
-                key={project.name}
-                delay={index * 0.04}
-              >
+              <Reveal key={project.name} delay={index * 0.04}>
                 <a
                   href={project.github}
                   target="_blank"
@@ -2019,5 +2053,3 @@ export default function Home() {
     </main>
   );
 }
-
-
