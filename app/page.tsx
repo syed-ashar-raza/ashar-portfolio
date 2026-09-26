@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import {
   AnimatePresence,
@@ -526,7 +526,7 @@ export default function Home() {
               rel="noreferrer"
               className="text-[10px] tracking-[0.15em] text-white/70 transition-colors hover:text-white"
             >
-              GITHUB â†—
+              GITHUB ←
             </a>
           </div>
         </div>
@@ -700,7 +700,7 @@ export default function Home() {
               >
                 EXPLORE SYSTEMS
                 <span className="ml-3 inline-block transition-transform duration-300 group-hover:translate-x-1">
-                  â†’
+                  →
                 </span>
               </a>
 
@@ -710,7 +710,7 @@ export default function Home() {
                 rel="noreferrer"
                 className="border border-white/[0.08] px-5 py-3 text-[10px] tracking-[0.18em] text-white/55 transition-all duration-300 hover:border-white/25 hover:text-white"
               >
-                VIEW GITHUB â†—
+                VIEW GITHUB ←
               </a>
             </motion.div>
 
@@ -877,7 +877,7 @@ export default function Home() {
                       <span>{item}</span>
 
                       {index < 4 && (
-                        <span className="text-white/20">â†’</span>
+                        <span className="text-white/20">→</span>
                       )}
                     </span>
                   ))}
@@ -925,7 +925,7 @@ export default function Home() {
                   <span>{domain.number}</span>
 
                   <span className="transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1">
-                    â†—
+                    ←
                   </span>
                 </div>
 
@@ -954,9 +954,9 @@ export default function Home() {
           <Reveal delay={0.15}>
             <div className="mt-16 flex flex-wrap items-center gap-3 text-[10px] tracking-[0.18em] text-white/30">
               <span>SOFTWARE ENGINEERING</span>
-              <span>â†’</span>
+              <span>→</span>
               <span>AI ENGINEERING</span>
-              <span>â†’</span>
+              <span>→</span>
               <span>PRODUCTION AI</span>
             </div>
           </Reveal>
@@ -1157,7 +1157,7 @@ export default function Home() {
                           }
                           className="transition-transform duration-300 group-hover:translate-x-1"
                         >
-                          â†’
+                          →
                         </motion.span>
                       </div>
                     </button>
@@ -1207,7 +1207,7 @@ export default function Home() {
 
                               <div className="relative flex min-w-max items-center gap-2">
                                 {project.architecture
-                                  .split(" â†’ ")
+                                  .split(" → ")
                                   .map(
                                     (
                                       step,
@@ -1265,7 +1265,7 @@ export default function Home() {
                                             }}
                                             className="text-white/25"
                                           >
-                                            â†’
+                                            →
                                           </motion.span>
                                         )}
                                       </div>
@@ -1323,7 +1323,7 @@ export default function Home() {
                               >
                                 VIEW SOURCE
                                 <span className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1">
-                                  â†—
+                                  ←
                                 </span>
                               </a>
 
@@ -1334,7 +1334,7 @@ export default function Home() {
                               >
                                 NEXT SYSTEM
                                 <span className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1">
-                                  â†’
+                                  →
                                 </span>
                               </button>
 
@@ -1411,7 +1411,7 @@ export default function Home() {
 
                   {index < items.length - 1 && (
                     <span className="ml-auto text-white/15 transition-transform duration-300 group-hover:translate-x-1">
-                      â†’
+                      →
                     </span>
                   )}
                 </div>
@@ -1500,7 +1500,7 @@ export default function Home() {
                           }}
                           className="px-3 text-white/20"
                         >
-                          â†’
+                          →
                         </motion.span>
                       )}
                     </div>
@@ -1826,7 +1826,7 @@ export default function Home() {
                     rel="noreferrer"
                     className="border border-white/[0.07] px-4 py-2.5 text-[9px] tracking-[0.16em] text-white/35 transition-colors hover:border-white/20 hover:text-white"
                   >
-                    LINKEDIN â†—
+                    LINKEDIN ←
                   </a>
                 </div>
               </div>
@@ -1878,7 +1878,7 @@ export default function Home() {
                     </span>
 
                     <span className="text-white/20 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                      â†—
+                      ←
                     </span>
                   </div>
 
@@ -1891,7 +1891,7 @@ export default function Home() {
                   </p>
 
                   <div className="mt-6 text-[9px] tracking-[0.16em] text-white/25 transition-colors group-hover:text-white/60">
-                    VIEW SOURCE â†’
+                    VIEW SOURCE →
                   </div>
                 </a>
               </Reveal>
@@ -1959,7 +1959,7 @@ export default function Home() {
                 </div>
 
                 <div className="mt-3 text-sm text-white/45 transition-colors group-hover:text-white">
-                  LinkedIn â†—
+                  LinkedIn ←
                 </div>
               </a>
             </Reveal>
@@ -1976,7 +1976,7 @@ export default function Home() {
                 </div>
 
                 <div className="mt-3 text-sm text-white/45 transition-colors group-hover:text-white">
-                  syed-ashar-raza â†—
+                  syed-ashar-raza ←
                 </div>
               </a>
             </Reveal>
