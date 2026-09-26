@@ -782,7 +782,7 @@ export default function Home() {
               >
                 <img
                   src="/portrait.png"
-                  alt="Syed Ashar Raza â€” AI Engineer"
+                  alt="Syed Ashar Raza — AI Engineer"
                   draggable={false}
                   className="h-full w-full select-none object-contain object-center"
                 />
@@ -816,7 +816,7 @@ export default function Home() {
               </div>
 
               <div className="pointer-events-none absolute bottom-2 left-1/2 z-30 -translate-x-1/2 whitespace-nowrap text-[7px] tracking-[0.18em] text-white/20">
-                DRAG TO ROTATE Â· DOUBLE CLICK TO RESET
+                DRAG TO ROTATE · DOUBLE CLICK TO RESET
               </div>
             </div>
 
@@ -1746,7 +1746,7 @@ export default function Home() {
 
                 <p>
                   My focus is building AI systems that go beyond
-                  model demonstrations â€” systems that can be
+                  model demonstrations — systems that can be
                   evaluated, served, monitored, secured, and
                   improved.
                 </p>
@@ -2067,7 +2067,7 @@ export default function Home() {
           </div>
 
           <div>
-            Â© 2026 SYED ASHAR RAZA Â· BUILT WITH NEXT.JS
+            © 2026 SYED ASHAR RAZA · BUILT WITH NEXT.JS
           </div>
         </div>
       </footer>
