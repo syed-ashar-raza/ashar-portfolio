@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import {
   AnimatePresence,
@@ -7,103 +7,124 @@ import {
 } from "motion/react";
 import { useRef, useState } from "react";
 
+
 const projects = [
-  {
-    number: "01",
-    category: "AI AGENT SYSTEM",
-    name: "AgentForge",
-    description:
-      "Production-oriented AI agent framework with LLM planning, tool execution, persistent memory, local inference, and FastAPI.",
-    architecture:
-      "USER → FASTAPI → AGENT ORCHESTRATOR → LLM → PLANNER → TOOLS → MEMORY → RESPONSE",
-    stack: [
-      "Python",
-      "FastAPI",
-      "Ollama",
-      "LLMs",
-      "Tool Calling",
-      "Pytest",
-    ],
-    github: "https://github.com/syed-ashar-raza/AgentForge",
-  },
-  {
-    number: "02",
-    category: "RETRIEVAL SYSTEM",
-    name: "RAGForge",
-    description:
-      "Production-oriented local RAG system for document ingestion, semantic retrieval, grounded generation, attribution, and evaluation.",
-    architecture:
-      "DOCUMENT → INGESTION → CHUNKING → EMBEDDING → VECTOR DB → RETRIEVAL → CONTEXT → LLM",
-    stack: [
-      "Python",
-      "FastAPI",
-      "PostgreSQL",
-      "pgvector",
-      "Ollama",
-      "Embeddings",
-      "Docker",
-    ],
-    github: "https://github.com/syed-ashar-raza/RAGForge",
-  },
-  {
-    number: "03",
-    category: "ML / MLOps PLATFORM",
-    name: "ModelOpsForge",
-    description:
-      "Production-oriented ML lifecycle covering reproducible training, evaluation, acceptance gates, model versioning, serving, and monitoring.",
-    architecture:
-      "DATA → VALIDATION → TRAINING → EVALUATION → GATES → REGISTRY → CHAMPION → API → MONITORING",
-    stack: [
-      "Python",
-      "Scikit-learn",
-      "MLflow",
-      "FastAPI",
-      "Prometheus",
-      "Joblib",
-      "Pytest",
-    ],
-    github: "https://github.com/syed-ashar-raza/ModelOpsForge",
-  },
-  {
-    number: "04",
-    category: "LANGUAGE AI",
-    name: "UrduLLM-Lab",
-    description:
-      "Applied Urdu LLM adaptation and evaluation research pipeline focused on language-specific experimentation and analysis.",
-    architecture:
-      "DATA → PREPARATION → LLM ADAPTATION → EVALUATION → ANALYSIS",
-    stack: [
-      "LLMs",
-      "NLP",
-      "Urdu Language AI",
-      "Evaluation",
-      "Research",
-    ],
-    github: "https://github.com/syed-ashar-raza/UrduLLM-Lab",
-  },
-  {
-    number: "05",
-    category: "AI AUTOMATION",
-    name: "fargo-solve",
-    description:
-      "Production-oriented AI automation and workflow execution platform integrating AI capabilities with executable workflows and voice interaction.",
-    architecture:
-      "INPUT → AI INTERPRETATION → WORKFLOW → TOOLS / SERVICES → EXECUTION → RESULT",
-    stack: ["AI", "Automation", "Workflows", "Voice AI", "APIs"],
-    github: "https://github.com/syed-ashar-raza/fargo-solve",
-  },
-  {
-    number: "06",
-    category: "SOFTWARE ENGINEERING",
-    name: "Bank Management System",
-    description:
-      "Professional Python CLI system demonstrating object-oriented design, persistence, validation, custom exceptions, transactions, and automated testing.",
-    architecture:
-      "USER → CLI → BUSINESS LOGIC → VALIDATION → PERSISTENCE",
-    stack: ["Python", "OOP", "JSON", "Pytest", "Validation"],
-    github:
-      "https://github.com/syed-ashar-raza/bank-management-system",
-  },
+{
+number: "01",
+category: "AI INFERENCE INFRASTRUCTURE",
+name: "Nexora",
+description:
+"Production AI inference infrastructure platform with provider routing, retries, circuit breakers, rate limiting, authentication, observability, and FastAPI serving.",
+architecture:
+"CLIENT → API → AUTH / RATE LIMIT → ROUTING → PROVIDER → RELIABILITY → OBSERVABILITY",
+stack: [
+"Python",
+"FastAPI",
+"Provider Routing",
+"Retry",
+"Circuit Breaker",
+"Prometheus",
+"Docker",
+"Pytest",
+],
+github: "https://github.com/syed-ashar-raza/Nexora",
+},
+{
+number: "02",
+category: "ML / MLOps PLATFORM",
+name: "ModelOpsForge",
+description:
+"Production-oriented ML lifecycle covering reproducible training, evaluation, acceptance gates, model versioning, serving, and monitoring.",
+architecture:
+"DATA → VALIDATION → TRAINING → EVALUATION → GATES → REGISTRY → CHAMPION → API → MONITORING",
+stack: [
+"Python",
+"Scikit-learn",
+"MLflow",
+"FastAPI",
+"Prometheus",
+"Joblib",
+"Pytest",
+],
+github: "https://github.com/syed-ashar-raza/ModelOpsForge",
+},
+{
+number: "03",
+category: "AI AGENT SYSTEM",
+name: "AgentForge",
+description:
+"Production-oriented AI agent framework with LLM planning, tool execution, persistent memory, local inference, and FastAPI.",
+architecture:
+"USER → FASTAPI → AGENT ORCHESTRATOR → LLM → PLANNER → TOOLS → MEMORY → RESPONSE",
+stack: [
+"Python",
+"FastAPI",
+"Ollama",
+"LLMs",
+"Tool Calling",
+"Pytest",
+],
+github: "https://github.com/syed-ashar-raza/AgentForge",
+},
+{
+number: "04",
+category: "RETRIEVAL SYSTEM",
+name: "RAGForge",
+description:
+"Production-oriented local RAG system for document ingestion, semantic retrieval, grounded generation, attribution, and evaluation.",
+architecture:
+"DOCUMENT → INGESTION → CHUNKING → EMBEDDING → VECTOR DB → RETRIEVAL → CONTEXT → LLM",
+stack: [
+"Python",
+"FastAPI",
+"PostgreSQL",
+"pgvector",
+"Ollama",
+"Embeddings",
+"Docker",
+],
+github: "https://github.com/syed-ashar-raza/RAGForge",
+},
+{
+number: "05",
+category: "AI AUTOMATION",
+name: "fargo-solve",
+description:
+"Production-oriented AI automation and workflow execution platform integrating AI capabilities with executable workflows and voice interaction.",
+architecture:
+"INPUT ? AI INTERPRETATION ? WORKFLOW ? TOOLS / SERVICES ? EXECUTION ? RESULT",
+stack: ["AI", "Automation", "Workflows", "Voice AI", "APIs"],
+github: "https://github.com/syed-ashar-raza/fargo-solve",
+},
+{
+number: "06",
+category: "LANGUAGE AI",
+name: "UrduLLM-Lab",
+description:
+"Applied Urdu LLM adaptation and evaluation research pipeline focused on language-specific experimentation and analysis.",
+architecture:
+"DATA → PREPARATION → LLM ADAPTATION → EVALUATION → ANALYSIS",
+stack: [
+"LLMs",
+"NLP",
+"Urdu Language AI",
+"Evaluation",
+"Research",
+],
+github: "https://github.com/syed-ashar-raza/UrduLLM-Lab",
+},
+{
+number: "07",
+category: "SOFTWARE ENGINEERING",
+name: "Bank Management System",
+description:
+"Professional Python CLI system demonstrating object-oriented design, persistence, validation, custom exceptions, transactions, and automated testing.",
+architecture:
+"USER → CLI → BUSINESS LOGIC → VALIDATION → PERSISTENCE",
+stack: ["Python", "OOP", "JSON", "Pytest", "Validation"],
+github:
+"https://github.com/syed-ashar-raza/bank-management-system",
+},
 ];
 
 const domains = [
@@ -505,7 +526,7 @@ export default function Home() {
               rel="noreferrer"
               className="text-[10px] tracking-[0.15em] text-white/70 transition-colors hover:text-white"
             >
-              GITHUB ↗
+              GITHUB â†—
             </a>
           </div>
         </div>
@@ -679,7 +700,7 @@ export default function Home() {
               >
                 EXPLORE SYSTEMS
                 <span className="ml-3 inline-block transition-transform duration-300 group-hover:translate-x-1">
-                  →
+                  â†’
                 </span>
               </a>
 
@@ -689,7 +710,7 @@ export default function Home() {
                 rel="noreferrer"
                 className="border border-white/[0.08] px-5 py-3 text-[10px] tracking-[0.18em] text-white/55 transition-all duration-300 hover:border-white/25 hover:text-white"
               >
-                VIEW GITHUB ↗
+                VIEW GITHUB â†—
               </a>
             </motion.div>
 
@@ -761,7 +782,7 @@ export default function Home() {
               >
                 <img
                   src="/portrait.png"
-                  alt="Syed Ashar Raza — AI Engineer"
+                  alt="Syed Ashar Raza â€” AI Engineer"
                   draggable={false}
                   className="h-full w-full select-none object-contain object-center"
                 />
@@ -795,7 +816,7 @@ export default function Home() {
               </div>
 
               <div className="pointer-events-none absolute bottom-2 left-1/2 z-30 -translate-x-1/2 whitespace-nowrap text-[7px] tracking-[0.18em] text-white/20">
-                DRAG TO ROTATE · DOUBLE CLICK TO RESET
+                DRAG TO ROTATE Â· DOUBLE CLICK TO RESET
               </div>
             </div>
 
@@ -856,7 +877,7 @@ export default function Home() {
                       <span>{item}</span>
 
                       {index < 4 && (
-                        <span className="text-white/20">→</span>
+                        <span className="text-white/20">â†’</span>
                       )}
                     </span>
                   ))}
@@ -904,7 +925,7 @@ export default function Home() {
                   <span>{domain.number}</span>
 
                   <span className="transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1">
-                    ↗
+                    â†—
                   </span>
                 </div>
 
@@ -933,9 +954,9 @@ export default function Home() {
           <Reveal delay={0.15}>
             <div className="mt-16 flex flex-wrap items-center gap-3 text-[10px] tracking-[0.18em] text-white/30">
               <span>SOFTWARE ENGINEERING</span>
-              <span>→</span>
+              <span>â†’</span>
               <span>AI ENGINEERING</span>
-              <span>→</span>
+              <span>â†’</span>
               <span>PRODUCTION AI</span>
             </div>
           </Reveal>
@@ -1136,7 +1157,7 @@ export default function Home() {
                           }
                           className="transition-transform duration-300 group-hover:translate-x-1"
                         >
-                          →
+                          â†’
                         </motion.span>
                       </div>
                     </button>
@@ -1186,7 +1207,7 @@ export default function Home() {
 
                               <div className="relative flex min-w-max items-center gap-2">
                                 {project.architecture
-                                  .split(" → ")
+                                  .split(" â†’ ")
                                   .map(
                                     (
                                       step,
@@ -1244,7 +1265,7 @@ export default function Home() {
                                             }}
                                             className="text-white/25"
                                           >
-                                            →
+                                            â†’
                                           </motion.span>
                                         )}
                                       </div>
@@ -1302,7 +1323,7 @@ export default function Home() {
                               >
                                 VIEW SOURCE
                                 <span className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1">
-                                  ↗
+                                  â†—
                                 </span>
                               </a>
 
@@ -1313,7 +1334,7 @@ export default function Home() {
                               >
                                 NEXT SYSTEM
                                 <span className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1">
-                                  →
+                                  â†’
                                 </span>
                               </button>
 
@@ -1390,7 +1411,7 @@ export default function Home() {
 
                   {index < items.length - 1 && (
                     <span className="ml-auto text-white/15 transition-transform duration-300 group-hover:translate-x-1">
-                      →
+                      â†’
                     </span>
                   )}
                 </div>
@@ -1479,7 +1500,7 @@ export default function Home() {
                           }}
                           className="px-3 text-white/20"
                         >
-                          →
+                          â†’
                         </motion.span>
                       )}
                     </div>
@@ -1725,7 +1746,7 @@ export default function Home() {
 
                 <p>
                   My focus is building AI systems that go beyond
-                  model demonstrations — systems that can be
+                  model demonstrations â€” systems that can be
                   evaluated, served, monitored, secured, and
                   improved.
                 </p>
@@ -1791,7 +1812,7 @@ export default function Home() {
 
                 <div className="mt-3 flex flex-wrap gap-3">
                   <a
-                    href="/resume.pdf"
+                    href="/Syed_Ashar_Raza_Resume.pdf"
                     target="_blank"
                     rel="noreferrer"
                     className="border border-white/15 px-4 py-2.5 text-[9px] tracking-[0.16em] text-white/55 transition-all duration-300 hover:border-white hover:bg-white hover:text-black"
@@ -1805,7 +1826,7 @@ export default function Home() {
                     rel="noreferrer"
                     className="border border-white/[0.07] px-4 py-2.5 text-[9px] tracking-[0.16em] text-white/35 transition-colors hover:border-white/20 hover:text-white"
                   >
-                    LINKEDIN ↗
+                    LINKEDIN â†—
                   </a>
                 </div>
               </div>
@@ -1857,7 +1878,7 @@ export default function Home() {
                     </span>
 
                     <span className="text-white/20 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                      ↗
+                      â†—
                     </span>
                   </div>
 
@@ -1870,7 +1891,7 @@ export default function Home() {
                   </p>
 
                   <div className="mt-6 text-[9px] tracking-[0.16em] text-white/25 transition-colors group-hover:text-white/60">
-                    VIEW SOURCE →
+                    VIEW SOURCE â†’
                   </div>
                 </a>
               </Reveal>
@@ -1938,7 +1959,7 @@ export default function Home() {
                 </div>
 
                 <div className="mt-3 text-sm text-white/45 transition-colors group-hover:text-white">
-                  LinkedIn ↗
+                  LinkedIn â†—
                 </div>
               </a>
             </Reveal>
@@ -1955,7 +1976,7 @@ export default function Home() {
                 </div>
 
                 <div className="mt-3 text-sm text-white/45 transition-colors group-hover:text-white">
-                  syed-ashar-raza ↗
+                  syed-ashar-raza â†—
                 </div>
               </a>
             </Reveal>
@@ -2029,7 +2050,7 @@ export default function Home() {
             </a>
 
             <a
-              href="/resume.pdf"
+              href="/Syed_Ashar_Raza_Resume.pdf"
               target="_blank"
               rel="noreferrer"
               className="transition-colors hover:text-white/60"
@@ -2046,10 +2067,12 @@ export default function Home() {
           </div>
 
           <div>
-            © 2026 SYED ASHAR RAZA · BUILT WITH NEXT.JS
+            Â© 2026 SYED ASHAR RAZA Â· BUILT WITH NEXT.JS
           </div>
         </div>
       </footer>
     </main>
   );
 }
+
+
