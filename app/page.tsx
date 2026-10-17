@@ -391,7 +391,7 @@ const experience = [
     "AI ENGINEER",
     "fargo-solve",
     "AI engineering, automation, workflow execution, and intelligent system development.",
-    "PRESENT",
+    "JUL 2024",
   ],
   [
     "02",
