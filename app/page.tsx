@@ -9,122 +9,220 @@ import { useRef, useState } from "react";
 
 
 const projects = [
-{
-number: "01",
-category: "AI INFERENCE INFRASTRUCTURE",
-name: "Nexora",
-description:
-"Production AI inference infrastructure platform with provider routing, retries, circuit breakers, rate limiting, authentication, observability, and FastAPI serving.",
-architecture:
-"CLIENT → API → AUTH / RATE LIMIT → ROUTING → PROVIDER → RELIABILITY → OBSERVABILITY",
-stack: [
-"Python",
-"FastAPI",
-"Provider Routing",
-"Retry",
-"Circuit Breaker",
-"Prometheus",
-"Docker",
-"Pytest",
-],
-github: "https://github.com/syed-ashar-raza/Nexora",
-},
-{
-number: "02",
-category: "ML / MLOps PLATFORM",
-name: "ModelOpsForge",
-description:
-"Production-oriented ML lifecycle covering reproducible training, evaluation, acceptance gates, model versioning, serving, and monitoring.",
-architecture:
-"DATA → VALIDATION → TRAINING → EVALUATION → GATES → REGISTRY → CHAMPION → API → MONITORING",
-stack: [
-"Python",
-"Scikit-learn",
-"MLflow",
-"FastAPI",
-"Prometheus",
-"Joblib",
-"Pytest",
-],
-github: "https://github.com/syed-ashar-raza/ModelOpsForge",
-},
-{
-number: "03",
-category: "AI AGENT SYSTEM",
-name: "AgentForge",
-description:
-"Production-oriented AI agent framework with LLM planning, tool execution, persistent memory, local inference, and FastAPI.",
-architecture:
-"USER → FASTAPI → AGENT ORCHESTRATOR → LLM → PLANNER → TOOLS → MEMORY → RESPONSE",
-stack: [
-"Python",
-"FastAPI",
-"Ollama",
-"LLMs",
-"Tool Calling",
-"Pytest",
-],
-github: "https://github.com/syed-ashar-raza/AgentForge",
-},
-{
-number: "04",
-category: "RETRIEVAL SYSTEM",
-name: "RAGForge",
-description:
-"Production-oriented local RAG system for document ingestion, semantic retrieval, grounded generation, attribution, and evaluation.",
-architecture:
-"DOCUMENT → INGESTION → CHUNKING → EMBEDDING → VECTOR DB → RETRIEVAL → CONTEXT → LLM",
-stack: [
-"Python",
-"FastAPI",
-"PostgreSQL",
-"pgvector",
-"Ollama",
-"Embeddings",
-"Docker",
-],
-github: "https://github.com/syed-ashar-raza/RAGForge",
-},
-{
-number: "05",
-category: "AI AUTOMATION",
-name: "fargo-solve",
-description:
-"Production-oriented AI automation and workflow execution platform integrating AI capabilities with executable workflows and voice interaction.",
-architecture:
-"INPUT ? AI INTERPRETATION ? WORKFLOW ? TOOLS / SERVICES ? EXECUTION ? RESULT",
-stack: ["AI", "Automation", "Workflows", "Voice AI", "APIs"],
-github: "https://github.com/syed-ashar-raza/fargo-solve",
-},
-{
-number: "06",
-category: "LANGUAGE AI",
-name: "UrduLLM-Lab",
-description:
-"Applied Urdu LLM adaptation and evaluation research pipeline focused on language-specific experimentation and analysis.",
-architecture:
-"DATA → PREPARATION → LLM ADAPTATION → EVALUATION → ANALYSIS",
-stack: [
-"LLMs",
-"NLP",
-"Urdu Language AI",
-"Evaluation",
-"Research",
-],
-github: "https://github.com/syed-ashar-raza/UrduLLM-Lab",
-},
-{
-number: "07",
-category: "SOFTWARE ENGINEERING",
-name: "Bank Management System",
-description:
-"Professional Python CLI system demonstrating object-oriented design, persistence, validation, custom exceptions, transactions, and automated testing.",
-architecture:
-"USER → CLI → BUSINESS LOGIC → VALIDATION → PERSISTENCE",
-stack: ["Python", "OOP", "JSON", "Pytest", "Validation"],
-github:
-"https://github.com/syed-ashar-raza/bank-management-system",
-},
+  {
+    number: "01",
+    category: "AI INFERENCE INFRASTRUCTURE",
+    name: "Nexora",
+    description:
+      "Production-oriented AI inference infrastructure gateway with provider routing, bounded retries, circuit breakers, rate limiting, authentication, streaming, and operational observability.",
+    architecture:
+      "CLIENT → API → AUTH / RATE LIMIT → ROUTING → PROVIDER → RELIABILITY → OBSERVABILITY",
+    stack: [
+      "Python",
+      "FastAPI",
+      "Provider Routing",
+      "Retry Budgets",
+      "Circuit Breaker",
+      "Prometheus",
+      "Docker",
+      "Kubernetes",
+      "Pytest",
+    ],
+    github: "https://github.com/syed-ashar-raza/Nexora",
+  },
+  {
+    number: "02",
+    category: "AI EVALUATION & REGRESSION",
+    name: "Verity",
+    description:
+      "Reproducible AI evaluation and regression platform with deterministic metrics, per-case thresholds, latency budgets, baseline regression gates, persisted reports, and CLI/API interfaces.",
+    architecture:
+      "DATASET → EVALUATION RUNNER → METRICS → THRESHOLDS → REGRESSION GATE → REPORT",
+    stack: [
+      "Python",
+      "FastAPI",
+      "CLI",
+      "Evaluation Metrics",
+      "Regression Testing",
+      "Pytest",
+      "Docker",
+      "GitHub Actions",
+    ],
+    github: "https://github.com/syed-ashar-raza/Verity",
+  },
+  {
+    number: "03",
+    category: "MCP & AGENT ARCHITECTURE",
+    name: "Orion",
+    description:
+      "Modern agent architecture focused on structured tool integration, controlled interactions, modular components, and interoperable AI workflows.",
+    architecture:
+      "AGENT → CONTEXT → TOOL INTERFACE → EXECUTION → RESULT",
+    stack: [
+      "Python",
+      "MCP",
+      "Agent Architecture",
+      "Tool Integration",
+      "Structured Interfaces",
+      "Testing",
+    ],
+    github: "https://github.com/syed-ashar-raza/Orion",
+  },
+  {
+    number: "04",
+    category: "MULTIMODAL ML / PEFT",
+    name: "Syntrix",
+    description:
+      "Reproducible ML engineering platform covering model training, evaluation, inference benchmarking, serving, observability, and a verified PEFT/LoRA smoke test.",
+    architecture:
+      "DATA → TRAINING → EVALUATION → INFERENCE → BENCHMARKING → OBSERVABILITY",
+    stack: [
+      "Python",
+      "PyTorch",
+      "PEFT",
+      "LoRA",
+      "Inference Benchmarking",
+      "Prometheus",
+      "FastAPI",
+      "Pytest",
+      "Docker",
+    ],
+    github: "https://github.com/syed-ashar-raza/Syntrix",
+  },
+  {
+    number: "05",
+    category: "RETRIEVAL SYSTEM",
+    name: "RAGForge",
+    description:
+      "Production-oriented local RAG system for document ingestion, semantic retrieval, grounded generation, evidence attribution, and continuous evaluation.",
+    architecture:
+      "DOCUMENT → INGESTION → CHUNKING → EMBEDDING → VECTOR DB → RETRIEVAL → CONTEXT → LLM",
+    stack: [
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "pgvector",
+      "Ollama",
+      "Embeddings",
+      "RAG Evaluation",
+      "Docker",
+      "GitHub Actions",
+    ],
+    github: "https://github.com/syed-ashar-raza/RAGForge",
+  },
+  {
+    number: "06",
+    category: "AI SECURITY EVALUATION",
+    name: "Sentinel",
+    description:
+      "AI security evaluation platform with deterministic security test cases, input inspection, PII-related controls, and reproducible evaluation reports.",
+    architecture:
+      "INPUT → SECURITY CONTROLS → DETECTION → EVALUATION → RESULTS → REPORT",
+    stack: [
+      "Python",
+      "AI Security",
+      "PII Protection",
+      "Security Evaluation",
+      "FastAPI",
+      "CLI",
+      "Pytest",
+      "Docker",
+    ],
+    github: "https://github.com/syed-ashar-raza/Sentinel",
+  },
+  {
+    number: "07",
+    category: "AI AGENT SYSTEM",
+    name: "AgentForge",
+    description:
+      "Production-oriented AI agent framework with LLM-driven tool selection, bounded execution, persistent memory, local inference, and a FastAPI interface.",
+    architecture:
+      "USER → FASTAPI → AGENT ORCHESTRATOR → LLM → TOOL DECISION → EXECUTION → CONTEXT → RESPONSE",
+    stack: [
+      "Python",
+      "FastAPI",
+      "Ollama",
+      "LLMs",
+      "Tool Calling",
+      "Bounded Execution",
+      "Persistent Memory",
+      "Pytest",
+    ],
+    github: "https://github.com/syed-ashar-raza/AgentForge",
+  },
+  {
+    number: "08",
+    category: "ML / MLOps PLATFORM",
+    name: "ModelOpsForge",
+    description:
+      "Production-oriented ML lifecycle covering reproducible training, model evaluation, acceptance gates, experiment tracking, model versioning, serving, and monitoring.",
+    architecture:
+      "DATA → VALIDATION → TRAINING → EVALUATION → GATES → REGISTRY → CHAMPION → API → MONITORING",
+    stack: [
+      "Python",
+      "Scikit-learn",
+      "MLflow",
+      "FastAPI",
+      "Prometheus",
+      "Joblib",
+      "Pytest",
+      "Docker",
+      "CI/CD",
+    ],
+    github: "https://github.com/syed-ashar-raza/ModelOpsForge",
+  },
+  {
+    number: "09",
+    category: "AI AUTOMATION",
+    name: "fargo-solve",
+    description:
+      "AI automation and workflow engineering involving intelligent workflows, voice interaction, API integration, and business-process execution.",
+    architecture:
+      "INPUT → AI INTERPRETATION → WORKFLOW → TOOLS / SERVICES → EXECUTION → RESULT",
+    stack: [
+      "AI",
+      "Automation",
+      "Workflows",
+      "Voice AI",
+      "APIs",
+    ],
+    github: "https://github.com/syed-ashar-raza/fargo-solve",
+  },
+  {
+    number: "10",
+    category: "LANGUAGE AI",
+    name: "UrduLLM-Lab",
+    description:
+      "Applied Urdu LLM adaptation and evaluation research pipeline focused on language-specific experimentation and analysis.",
+    architecture:
+      "DATA → PREPARATION → LLM ADAPTATION → EVALUATION → ANALYSIS",
+    stack: [
+      "LLMs",
+      "NLP",
+      "Urdu Language AI",
+      "Evaluation",
+      "Research",
+    ],
+    github: "https://github.com/syed-ashar-raza/UrduLLM-Lab",
+  },
+  {
+    number: "11",
+    category: "SOFTWARE ENGINEERING",
+    name: "Bank Management System",
+    description:
+      "Python CLI application demonstrating object-oriented design, persistence, validation, custom exceptions, transaction handling, and automated testing.",
+    architecture:
+      "USER → CLI → BUSINESS LOGIC → VALIDATION → PERSISTENCE",
+    stack: [
+      "Python",
+      "OOP",
+      "JSON",
+      "Pytest",
+      "Validation",
+    ],
+    github:
+      "https://github.com/syed-ashar-raza/bank-management-system",
+  },
 ];
 
 const domains = [
@@ -825,7 +923,7 @@ export default function Home() {
             </div>
 
             <div className="absolute -right-5 bottom-1/4 border border-white/[0.08] bg-[#050505] px-3 py-2 text-[8px] tracking-[0.2em] text-white/30">
-              06 SYSTEMS
+              11 SYSTEMS
             </div>
           </motion.div>
         </div>
@@ -835,7 +933,7 @@ export default function Home() {
       <section className="border-b border-white/[0.06] px-5 py-28 sm:px-8 lg:px-12 lg:py-40">
         <div className="mx-auto max-w-[1500px]">
           <Reveal>
-            <SectionLabel number="01" children="ENGINEERING" />
+            <SectionLabel number="01">ENGINEERING</SectionLabel>
           </Reveal>
 
           <Reveal delay={0.08}>
@@ -903,9 +1001,7 @@ export default function Home() {
         <div className="mx-auto max-w-[1500px]">
           <Reveal>
             <SectionLabel
-              number="02"
-              children="ENGINEERING DOMAINS"
-            />
+              number="02">ENGINEERING DOMAINS</SectionLabel>
           </Reveal>
 
           <Reveal delay={0.08}>
@@ -971,9 +1067,7 @@ export default function Home() {
         <div className="mx-auto max-w-[1500px]">
           <Reveal>
             <SectionLabel
-              number="03"
-              children="SELECTED SYSTEMS"
-            />
+              number="03">SELECTED SYSTEMS</SectionLabel>
           </Reveal>
 
           <Reveal delay={0.08}>
@@ -982,7 +1076,7 @@ export default function Home() {
                 Engineering systems
                 <br />
                 <span className="text-white/35">
-                  I've built.
+                  I&apos;ve built.
                 </span>
               </h2>
 
@@ -1198,7 +1292,7 @@ export default function Home() {
                               </span>
 
                               <span className="text-[8px] tracking-[0.2em] text-white/20">
-                                {project.number} / 06
+                                {project.number} / 11
                               </span>
                             </div>
 
@@ -1371,9 +1465,7 @@ export default function Home() {
         <div className="mx-auto max-w-[1500px]">
           <Reveal>
             <SectionLabel
-              number="04"
-              children="ENGINEERING PATH"
-            />
+              number="04">ENGINEERING PATH</SectionLabel>
           </Reveal>
 
           <Reveal delay={0.08}>
@@ -1434,9 +1526,7 @@ export default function Home() {
         <div className="mx-auto max-w-[1500px]">
           <Reveal>
             <SectionLabel
-              number="05"
-              children="SYSTEM ARCHITECTURE"
-            />
+              number="05">SYSTEM ARCHITECTURE</SectionLabel>
           </Reveal>
 
           <Reveal delay={0.08}>
@@ -1524,9 +1614,7 @@ export default function Home() {
         <div className="mx-auto max-w-[1500px]">
           <Reveal>
             <SectionLabel
-              number="06"
-              children="ENGINEERING EVIDENCE"
-            />
+              number="06">ENGINEERING EVIDENCE</SectionLabel>
           </Reveal>
 
           <Reveal delay={0.08}>
@@ -1568,9 +1656,7 @@ export default function Home() {
         <div className="mx-auto max-w-[1500px]">
           <Reveal>
             <SectionLabel
-              number="07"
-              children="PRINCIPLES"
-            />
+              number="07">PRINCIPLES</SectionLabel>
           </Reveal>
 
           <Reveal delay={0.08}>
@@ -1611,9 +1697,7 @@ export default function Home() {
         <div className="mx-auto max-w-[1500px]">
           <Reveal>
             <SectionLabel
-              number="08"
-              children="TECHNOLOGY STACK"
-            />
+              number="08">TECHNOLOGY STACK</SectionLabel>
           </Reveal>
 
           <Reveal delay={0.08}>
@@ -1657,9 +1741,7 @@ export default function Home() {
         <div className="mx-auto max-w-[1500px]">
           <Reveal>
             <SectionLabel
-              number="09"
-              children="EXPERIENCE"
-            />
+              number="09">EXPERIENCE</SectionLabel>
           </Reveal>
 
           <div className="mt-16 border-t border-white/[0.08]">
@@ -1713,9 +1795,7 @@ export default function Home() {
         <div className="mx-auto grid max-w-[1500px] gap-16 lg:grid-cols-[0.7fr_1.3fr]">
           <Reveal>
             <SectionLabel
-              number="10"
-              children="ABOUT"
-            />
+              number="10">ABOUT</SectionLabel>
           </Reveal>
 
           <Reveal delay={0.08}>
@@ -1726,7 +1806,7 @@ export default function Home() {
 
               <div className="mt-14 max-w-3xl space-y-7 text-sm leading-7 text-white/40 sm:text-base">
                 <p>
-                  I'm Syed Ashar Raza, an AI Engineer focused on
+                  I&apos;m Syed Ashar Raza, an AI Engineer focused on
                   building intelligent software systems.
                 </p>
 
@@ -1765,9 +1845,7 @@ export default function Home() {
         <div className="mx-auto max-w-[1500px]">
           <Reveal>
             <SectionLabel
-              number="11"
-              children="PROFESSIONAL PROFILE"
-            />
+              number="11">PROFESSIONAL PROFILE</SectionLabel>
           </Reveal>
 
           <div className="mt-16 flex flex-col justify-between gap-12 lg:flex-row lg:items-end">
@@ -1840,9 +1918,7 @@ export default function Home() {
         <div className="mx-auto max-w-[1500px]">
           <Reveal>
             <SectionLabel
-              number="12"
-              children="SOURCE"
-            />
+              number="12">SOURCE</SectionLabel>
           </Reveal>
 
           <Reveal delay={0.08}>
@@ -1908,14 +1984,12 @@ export default function Home() {
         <div className="mx-auto max-w-[1500px]">
           <Reveal>
             <SectionLabel
-              number="13"
-              children="CONTACT"
-            />
+              number="13">CONTACT</SectionLabel>
           </Reveal>
 
           <Reveal delay={0.08}>
             <h2 className="mt-6 max-w-5xl text-5xl font-medium tracking-[-0.07em] sm:text-7xl lg:text-9xl">
-              Let's build
+              Let&apos;s build
               <br />
               <span className="text-white/35">
                 something intelligent.
